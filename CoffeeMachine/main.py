@@ -43,14 +43,22 @@ while coffee_machine_on:
 # TODO 3: a report should be generated for inventory when requested by user
     if user_input == "report":
         print(generate_report())
+# TODO 4: check there are sufficient resources before making order
     if user_input == "latte" or user_input == "espresso" or user_input == "cappuccino":
         if check_resources(user_input):
+            cost = MENU[user_input]['cost']
+            reformatted_cost = format(cost, ".2f")
+            print(f"{user_input.title()} costs: £{reformatted_cost}, please insert your coins.")
+            pounds = float(input("How many 1 pound coins are you entering?: "))
+            fifty_p = float(input("How many 50 pence coins are you entering?: "))
+            twenty_p = float(input("How many 20 pence coins are you entering?: "))
+            ten_p = float(input("How many 10 pence coins are you entering?: "))
+            five_p = float(input("How many 5 pence coins are you entering?: "))
+            one_p = float(input("How many 1 pence coins are you entering?: "))
             update_resources(user_input)
             print(generate_report())
         else:
             print("Sorry this option is out of stock, please come back later.")
-
-# TODO 4: check there are sufficient resources before making order
 
 # TODO 5: process coins
 
